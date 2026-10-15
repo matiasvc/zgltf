@@ -580,7 +580,7 @@ fn parseGltfJson(self: *Gltf, gltf_json: []const u8) !void {
                     var primitive: Primitive = .{};
 
                     if (prim_item.object.get("mode")) |mode| {
-                        primitive.mode = @as(Mode, @enumFromInt(mode.integer));
+                        primitive.mode = @as(Mode, @fromBackingInt(@intCast(mode.integer)));
                     }
 
                     if (prim_item.object.get("indices")) |indices| {
@@ -698,7 +698,7 @@ fn parseGltfJson(self: *Gltf, gltf_json: []const u8) !void {
             };
 
             if (object.get("componentType")) |component_type| {
-                accessor.component_type = @as(ComponentType, @enumFromInt(component_type.integer));
+                accessor.component_type = @as(ComponentType, @fromBackingInt(@intCast(component_type.integer)));
             } else {
                 panic("Accessor's componentType is missing.", .{});
             }
@@ -778,7 +778,7 @@ fn parseGltfJson(self: *Gltf, gltf_json: []const u8) !void {
             }
 
             if (object.get("target")) |target| {
-                buffer_view.target = @as(Target, @enumFromInt(target.integer));
+                buffer_view.target = @as(Target, @fromBackingInt(@intCast(target.integer)));
             }
 
             if (object.get("extras")) |extras| {
@@ -1204,19 +1204,19 @@ fn parseGltfJson(self: *Gltf, gltf_json: []const u8) !void {
             var sampler = TextureSampler{};
 
             if (object.get("magFilter")) |mag_filter| {
-                sampler.mag_filter = @as(MagFilter, @enumFromInt(mag_filter.integer));
+                sampler.mag_filter = @as(MagFilter, @fromBackingInt(@intCast(mag_filter.integer)));
             }
 
             if (object.get("minFilter")) |min_filter| {
-                sampler.min_filter = @as(MinFilter, @enumFromInt(min_filter.integer));
+                sampler.min_filter = @as(MinFilter, @fromBackingInt(@intCast(min_filter.integer)));
             }
 
             if (object.get("wrapS")) |wrap_s| {
-                sampler.wrap_s = @as(WrapMode, @enumFromInt(wrap_s.integer));
+                sampler.wrap_s = @as(WrapMode, @fromBackingInt(@intCast(wrap_s.integer)));
             }
 
             if (object.get("wrapt")) |wrap_t| {
-                sampler.wrap_t = @as(WrapMode, @enumFromInt(wrap_t.integer));
+                sampler.wrap_t = @as(WrapMode, @fromBackingInt(@intCast(wrap_t.integer)));
             }
 
             if (object.get("extras")) |extras| {
